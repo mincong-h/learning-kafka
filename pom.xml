@@ -10,10 +10,12 @@
   <description>Learning Kafka</description>
 
   <properties>
-    <curator.version>4.2.0</curator.version>
+    <debezium.version>0.10.0.CR2</debezium.version>
     <junit.version>4.12</junit.version>
     <assertj.version>3.9.1</assertj.version>
     <slf4j.version>1.7.25</slf4j.version>
+    <kafka.version>2.3.0</kafka.version>
+    <kafka.scala.version>2.12</kafka.scala.version>
 
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -28,9 +30,22 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.apache.curator</groupId>
-      <artifactId>curator-test</artifactId>
-      <version>${curator.version}</version>
+      <groupId>io.debezium</groupId>
+      <artifactId>debezium-core</artifactId>
+      <version>${debezium.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.debezium</groupId>
+      <artifactId>debezium-core</artifactId>
+      <version>${debezium.version}</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka_${kafka.scala.version}</artifactId>
+      <version>${kafka.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>

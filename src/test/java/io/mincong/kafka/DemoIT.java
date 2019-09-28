@@ -1,22 +1,44 @@
 package io.mincong.kafka;
 
-import org.apache.curator.test.TestingServer;
-import org.junit.After;
-import org.junit.Before;
+import io.debezium.kafka.KafkaCluster;
+import io.debezium.util.Testing;
+import java.io.File;
+import java.io.IOException;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class DemoIT {
 
-  private TestingServer zooKeeper;
+  private static File dataDir;
+  private static KafkaCluster kafkaCluster;
 
-  @Before
-  public void setUp() throws Exception {
-    zooKeeper = new TestingServer();
+  private static KafkaCluster kafkaCluster() {
+    if (kafkaCluster != null) {
+      throw new IllegalStateException();
+    }
+    dataDir = Testing.Files.createTestingDirectory("cluster");
+    kafkaCluster = new KafkaCluster().usingDirectory(dataDir).withPorts(2181, 9092);
+    return kafkaCluster;
   }
 
-  @After
-  public void tearDown() throws Exception {
-    zooKeeper.close();
+  @BeforeClass
+  public static void setUpBeforeClass() throws IOException {
+    kafkaCluster = kafkaCluster().deleteDataPriorToStartup(true).addBrokers(1).startup();
+  }
+
+  @AfterClass
+  public static void tearDownAfterClass() {
+    if (kafkaCluster != null) {
+      kafkaCluster.shutdown();
+      kafkaCluster = null;
+      boolean delete = dataDir.delete();
+      // If files are still locked and a test fails: delete on exit to allow subsequent test
+      // execution
+      if (!delete) {
+        dataDir.deleteOnExit();
+      }
+    }
   }
 
   @Test
