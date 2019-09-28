@@ -6,12 +6,15 @@ import java.io.File;
 import java.io.IOException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Test;
 
-public class DemoIT {
+/**
+ * @author Mincong Huang
+ * @since 0.1.0
+ */
+public abstract class AbstractKafkaIT {
 
   private static File dataDir;
-  private static KafkaCluster kafkaCluster;
+  protected static KafkaCluster kafkaCluster;
 
   private static KafkaCluster kafkaCluster() {
     if (kafkaCluster != null) {
@@ -39,10 +42,5 @@ public class DemoIT {
         dataDir.deleteOnExit();
       }
     }
-  }
-
-  @Test
-  public void demo() {
-    // do nothing
   }
 }
