@@ -2,6 +2,12 @@
 
 Learning Apache Kafka.
 
+## Install
+
+```
+mvn clean install
+```
+
 ## Frameworks
 
 Frameworks used by this project:
