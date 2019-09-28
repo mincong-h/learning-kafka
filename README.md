@@ -1,4 +1,4 @@
-# Learning Kafka
+# Learning Kafka [![Build Status][travis-img]][travis]
 
 Learning Apache Kafka.
 
@@ -24,3 +24,6 @@ Frameworks used by this project:
   _Stack Overflow_, 2017. <https://stackoverflow.com/a/44604348/4381330>
 - Vert.x, "Kafka Cluster Test Base", _GitHub_, 2018.
   <https://github.com/vert-x3/vertx-kafka-client/blob/master/src/test/java/io/vertx/kafka/client/tests/KafkaClusterTestBase.java>
+
+[travis]: https://travis-ci.org/mincong-h/learning-kafka
+[travis-img]: https://travis-ci.org/mincong-h/learning-kafka.svg?branch=master
