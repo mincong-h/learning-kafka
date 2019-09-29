@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static org.apache.kafka.clients.producer.ProducerConfig.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 
@@ -23,14 +24,14 @@ public class ProducerIT extends AbstractKafkaIT {
   @Test
   public void sendRecord() throws Exception {
     Properties props = new Properties();
-    props.put("bootstrap.servers", "localhost:9092");
-    props.put("acks", "all");
-    props.put("retries", 0);
-    props.put("batch.size", 16384);
-    props.put("linger.ms", 1);
-    props.put("buffer.memory", 33554432);
-    props.put("key.serializer", StringSerializer.class.getName());
-    props.put("value.serializer", StringSerializer.class.getName());
+    props.put(BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+    props.put(ACKS_CONFIG, "all");
+    props.put(RETRIES_CONFIG, 0);
+    props.put(BATCH_SIZE_CONFIG, 16384);
+    props.put(LINGER_MS_CONFIG, 1);
+    props.put(BUFFER_MEMORY_CONFIG, 33554432);
+    props.put(KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+    props.put(VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
     CountDownLatch completion = new CountDownLatch(1);
     Map<String, String> messages = new ConcurrentHashMap<>();
