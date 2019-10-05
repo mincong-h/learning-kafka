@@ -2,7 +2,9 @@
 
 Examples of using the `kafka-consumer-groups.sh` provided in kafka bin directory.
 
-## Describe a consumer group, see the topics (and its partitions) it is consuming and each partition's the current offset (already consumed by the consumer group).
+## Describe Consumer Group
+
+Describe consumer group, list the topics and their partition offset lag (number of messages not yet processed) related to given group.
 
 ```
 kafka-consumer-groups.sh --bootstrap-server localhost:9092 --group foo-app --describe
